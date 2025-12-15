@@ -159,6 +159,7 @@ public class EveFittingHelper extends JFrame {
             }
         }
 
+        Pattern emptyXSlot = Pattern.compile("^\\[Empty (.*) slot]$");
         Pattern multipleItems = Pattern.compile("^(.*) x(\\d*)$");
         Pattern shipMatcher = Pattern.compile("^\\[([^,]*).*?]$");
 
@@ -167,9 +168,11 @@ public class EveFittingHelper extends JFrame {
             int multiplier = fittingPanel.getNumber();
             for (String row : fittingPanel.getText().split("\n")) {
                 if (row.isBlank()) continue;
+                Matcher matcher = emptyXSlot.matcher(row);
+                if (matcher.matches()) continue;
                 String name;
                 int count;
-                Matcher matcher = shipMatcher.matcher(row);
+                matcher = shipMatcher.matcher(row);
                 if (matcher.matches()) {
                     // It's a ship. figure out the name.
                     name = matcher.group(1);

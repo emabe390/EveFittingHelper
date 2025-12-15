@@ -7,8 +7,8 @@ import java.util.function.Consumer;
 
 class FittingRowPanel extends JPanel {
 
-    private JTextField numberField = new JTextField(5);
-    private JTextArea textArea = new JTextArea(3, 20);
+    private final JTextField numberField = new JTextField(5);
+    private final JTextArea textArea = new JTextArea(3, 20);
 
     public FittingRowPanel(int index, Consumer<FittingRowPanel> onRemove) {
         setLayout(new BorderLayout(5, 5));
